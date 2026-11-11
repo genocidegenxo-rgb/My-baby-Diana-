@@ -1,0 +1,1180 @@
+Here is the updated HTML code for the "Mi Niña Bonita" museum page. It includes the 1,000 reassurances section, sets the password to "i love you" with a hint, and fixes the buttons and Spotify track you requested.
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+<meta name="theme-color" content="#16070c">
+<title>Mi Niña Bonita — The Diana Museum</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:wght@300;400;500;600&family=Great+Vibes&display=swap');
+
+:root {
+  --bg: #10070b;
+  --panel: #1a0b11;
+  --panel2: #230d16;
+  --wine: #5d1028;
+  --red: #b21e3d;
+  --rose: #e7a0ae;
+  --cream: #f3e6df;
+  --muted: #b99da4;
+  --gold: #c89a72;
+  --line: rgba(231, 160, 174, 0.19);
+  --shadow: 0 24px 80px #0008;
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: radial-gradient(ellipse at 20% 0%, #481021 0%, transparent 35%),
+              radial-gradient(ellipse at 90% 35%, #280b17 0%, transparent 38%),
+              var(--bg);
+  color: var(--cream);
+  font-family: 'DM Sans', sans-serif;
+  overflow-x: hidden;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.14;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.25'/%3E%3C/svg%3E");
+  z-index: 10;
+}
+
+button, input { font: inherit; }
+button { cursor: pointer; }
+.serif { font-family: 'Cormorant Garamond', serif; }
+.script { font-family: 'Great Vibes', cursive; }
+.eyebrow {
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--rose);
+  font-size: 0.66rem;
+  font-weight: 500;
+}
+.muted { color: var(--muted); }
+.gold { color: var(--gold); }
+
+/* GATE */
+#gate {
+  position: fixed;
+  z-index: 100;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 40%, #4b1024, #10070b 65%);
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  transition: opacity 0.8s var(--ease-out), visibility 0.8s;
+}
+#gate.hidden { opacity: 0; visibility: hidden; }
+
+.gate-card {
+  width: min(480px, 100%);
+  text-align: center;
+  padding: 42px 30px;
+  border: 1px solid var(--line);
+  background: #160910d9;
+  backdrop-filter: blur(6px);
+  box-shadow: var(--shadow);
+  position: relative;
+  border-radius: 4px;
+}
+.gate-card:before, .gate-card:after {
+  content: '✦';
+  position: absolute;
+  color: var(--gold);
+  font-size: 20px;
+}
+.gate-card:before { top: 14px; left: 18px; }
+.gate-card:after { bottom: 14px; right: 18px; }
+
+.gate-flower {
+  font-size: 2rem;
+  color: var(--rose);
+  animation: pulse 3s infinite;
+}
+.gate-title {
+  font-size: clamp(3rem, 10vw, 5.5rem);
+  line-height: 0.9;
+  margin: 16px 0 10px;
+}
+.gate-sub {
+  font-size: 0.8rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 4px;
+}
+.gate-hint {
+  font-size: 0.75rem;
+  color: var(--gold);
+  letter-spacing: 0.05em;
+  margin: 10px 0 2px;
+  font-style: italic;
+  opacity: 0.9;
+}
+.gate-input {
+  margin: 28px 0 12px;
+  width: 100%;
+  padding: 14px 16px;
+  text-align: center;
+  color: var(--cream);
+  background: #0c0509;
+  border: 1px solid #713047;
+  outline: none;
+  letter-spacing: 0.2em;
+  border-radius: 2px;
+  font-size: 0.9rem;
+  transition: border-color 0.2s;
+}
+.gate-input:focus { border-color: var(--rose); }
+.gate-input::placeholder {
+  letter-spacing: 0.1em;
+  color: #7a4b5a;
+  font-size: 0.8rem;
+}
+
+.primary {
+  border: 1px solid var(--red);
+  background: linear-gradient(120deg, #6d102a, #a51b3b);
+  color: #fff;
+  padding: 13px 24px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-size: 0.68rem;
+  transition: 0.25s var(--ease-out);
+  border-radius: 2px;
+  font-weight: 500;
+}
+.primary:hover { filter: brightness(1.2); transform: translateY(-2px); }
+.primary:active { transform: translateY(0); }
+.primary:focus-visible { outline: 2px solid var(--rose); outline-offset: 3px; }
+
+.error {
+  min-height: 18px;
+  color: #ff8da4;
+  font-size: 0.75rem;
+  margin-top: 4px;
+}
+
+/* HEADER */
+header {
+  position: relative;
+  min-height: 92vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 100px 22px 90px;
+  overflow: hidden;
+}
+.hero-orbit {
+  position: absolute;
+  width: min(76vw, 650px);
+  aspect-ratio: 1;
+  border: 1px solid #b94a6433;
+  border-radius: 50%;
+  animation: spin 55s linear infinite;
+}
+.hero-orbit:before, .hero-orbit:after {
+  content: '✧';
+  position: absolute;
+  color: var(--gold);
+  font-size: 24px;
+}
+.hero-orbit:before { top: 10%; left: 18%; }
+.hero-orbit:after { bottom: 12%; right: 14%; }
+.hero-content { position: relative; z-index: 1; }
+.hero-kicker {
+  letter-spacing: 0.36em;
+  text-transform: uppercase;
+  font-size: 0.65rem;
+  color: var(--rose);
+  font-weight: 500;
+}
+h1 {
+  font-size: clamp(4.4rem, 14vw, 10rem);
+  font-weight: 400;
+  line-height: 0.78;
+  margin: 30px 0 24px;
+  text-shadow: 0 0 50px #9e234955;
+}
+.hero-sub {
+  max-width: 540px;
+  margin: 0 auto;
+  color: #d2b9bf;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1.2rem, 3vw, 1.65rem);
+  font-style: italic;
+  line-height: 1.5;
+}
+.hero-mark {
+  margin-top: 40px;
+  color: var(--gold);
+  font-size: 1.3rem;
+  letter-spacing: 0.5em;
+}
+.scroll {
+  position: absolute;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.6rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+/* NAV */
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: flex;
+  justify-content: center;
+  gap: clamp(10px, 2.5vw, 28px);
+  flex-wrap: wrap;
+  padding: 15px 12px;
+  background: #10070be8;
+  backdrop-filter: blur(14px);
+  border-block: 1px solid var(--line);
+}
+nav a {
+  font-size: 0.62rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.2s;
+  padding: 4px 0;
+  font-weight: 500;
+}
+nav a:hover, nav a:focus-visible { color: var(--rose); outline: none; }
+nav a:focus-visible { text-decoration: underline; }
+
+main { width: min(1100px, calc(100% - 36px)); margin: auto; }
+.section { padding: 100px 0 25px; scroll-margin-top: 80px; }
+.section-head { text-align: center; margin-bottom: 44px; }
+.section-head h2 {
+  font-size: clamp(2.7rem, 7vw, 4.7rem);
+  font-weight: 400;
+  margin: 10px 0;
+}
+.section-head p {
+  color: var(--muted);
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.2rem;
+  font-style: italic;
+}
+.ornament { color: var(--gold); letter-spacing: 0.7em; }
+
+.intro {
+  max-width: 780px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 34px 30px;
+  border-block: 1px solid var(--line);
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.55rem;
+  line-height: 1.55;
+  color: #e8d5d5;
+}
+.intro em { color: var(--rose); }
+
+/* EXHIBIT GRID */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+.exhibit {
+  min-height: 240px;
+  padding: 26px 23px;
+  text-align: left;
+  background: linear-gradient(145deg, #28101a, #160a10);
+  border: 1px solid var(--line);
+  position: relative;
+  overflow: hidden;
+  transition: 0.3s var(--ease-out);
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+}
+.exhibit:hover {
+  transform: translateY(-5px);
+  border-color: #b34a65;
+  box-shadow: 0 16px 40px #0005;
+}
+.exhibit:after {
+  content: '✧';
+  position: absolute;
+  right: 18px;
+  top: 12px;
+  color: #a64c62;
+  font-size: 1.4rem;
+  pointer-events: none;
+}
+.exhibit .num {
+  font-size: 0.62rem;
+  letter-spacing: 0.2em;
+  color: var(--gold);
+}
+.exhibit h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 500;
+  font-size: 1.85rem;
+  margin: 17px 0 9px;
+  line-height: 1.2;
+}
+.exhibit p {
+  font-size: 0.84rem;
+  line-height: 1.7;
+  color: var(--muted);
+  flex: 1;
+}
+.exhibit button {
+  margin-top: 16px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--rose);
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  align-self: flex-start;
+  transition: color 0.2s, transform 0.2s;
+}
+.exhibit button:hover { color: #ffb8c6; transform: translateX(4px); }
+.exhibit button:focus-visible { outline: 2px solid var(--rose); outline-offset: 4px; }
+
+/* FEATURE PANEL */
+.feature-panel {
+  background: linear-gradient(135deg, #2c0c18, #160910);
+  border: 1px solid var(--line);
+  padding: 34px;
+  box-shadow: var(--shadow);
+  border-radius: 4px;
+}
+.feature-panel h3 {
+  font: 500 2rem 'Cormorant Garamond';
+  margin: 0 0 10px;
+}
+
+/* TIMER */
+.timer {
+  display: flex;
+  justify-content: center;
+  gap: clamp(10px, 4vw, 38px);
+  flex-wrap: wrap;
+  margin: 30px 0;
+}
+.time-unit { text-align: center; min-width: 76px; }
+.time-unit strong {
+  display: block;
+  font: 500 clamp(2rem, 6vw, 3.8rem) 'Cormorant Garamond';
+  color: var(--rose);
+  line-height: 1.2;
+}
+.time-unit span {
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.timer-note {
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.8rem;
+}
+
+/* BOUQUET */
+.bouquet {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+.flower {
+  border: 1px solid var(--line);
+  background: #1b0b12;
+  padding: 24px 12px;
+  text-align: center;
+  color: var(--cream);
+  transition: 0.25s var(--ease-out);
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+.flower:hover {
+  transform: translateY(-4px);
+  border-color: var(--rose);
+}
+.flower:focus-visible { outline: 2px solid var(--rose); outline-offset: 4px; }
+.flower .bloom {
+  display: block;
+  font-size: 2.6rem;
+  margin-bottom: 10px;
+  filter: drop-shadow(0 0 12px #c83d5c55);
+  line-height: 1;
+}
+.flower small {
+  display: block;
+  color: var(--muted);
+  margin-top: 5px;
+  font-size: 0.7rem;
+}
+.flower.collected {
+  background: #421323;
+  border-color: var(--gold);
+}
+.flower.collected small { color: var(--gold); }
+.collection-count {
+  text-align: center;
+  color: var(--gold);
+  margin: 20px 0;
+  font-weight: 500;
+}
+
+/* REASSURANCE */
+#reassurance .feature-panel { padding: 34px 28px; }
+#reassuranceText {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1.4rem, 3.5vw, 2.1rem);
+  line-height: 1.55;
+  min-height: 180px;
+  display: grid;
+  place-items: center;
+  padding: 16px 4px;
+  color: var(--cream);
+  transition: opacity 0.25s;
+}
+#reassuranceCount {
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  margin: 18px 0;
+}
+.reassurance-buttons {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+/* SURPRISE */
+.surprise {
+  padding: 35px;
+  text-align: center;
+  border: 1px dashed #914057;
+  background: #1b0b12;
+  border-radius: 4px;
+}
+.surprise button { margin: 7px; }
+.surprise-message {
+  font: italic 1.4rem 'Cormorant Garamond';
+  color: var(--rose);
+  min-height: 54px;
+  margin-top: 20px;
+  line-height: 1.5;
+}
+
+/* LETTER */
+.letter {
+  max-width: 720px;
+  margin: auto;
+  padding: 40px;
+  background: #f0e3d8;
+  color: #38202a;
+  box-shadow: var(--shadow);
+  transform: rotate(-0.4deg);
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.25rem;
+  line-height: 1.7;
+  border-radius: 2px;
+}
+.letter .script {
+  font-size: 2.8rem;
+  color: #8c2542;
+  margin-bottom: 10px;
+}
+.letter p { margin: 12px 0; }
+
+.spotify {
+  max-width: 560px;
+  margin: auto;
+}
+.spotify iframe {
+  border-radius: 12px;
+  width: 100%;
+  height: 152px;
+  border: 0;
+}
+
+.footer {
+  text-align: center;
+  padding: 90px 20px 55px;
+  color: var(--muted);
+  font: italic 1.3rem 'Cormorant Garamond';
+}
+.footer .script {
+  display: block;
+  color: var(--rose);
+  font-size: 3rem;
+  margin: 14px 0 4px;
+}
+
+/* MODAL */
+.modal {
+  position: fixed;
+  inset: 0;
+  background: #050205dd;
+  z-index: 80;
+  display: none;
+  place-items: center;
+  padding: 20px;
+}
+.modal.show { display: grid; }
+.modal-card {
+  width: min(600px, 100%);
+  padding: 35px;
+  background: #1c0b12;
+  border: 1px solid #8b3a53;
+  box-shadow: var(--shadow);
+  position: relative;
+  border-radius: 4px;
+}
+.modal-card h3 {
+  font: 500 2.6rem 'Cormorant Garamond';
+  margin: 5px 0 14px;
+}
+.modal-card p {
+  color: #d2b9bf;
+  line-height: 1.8;
+}
+.close {
+  position: absolute;
+  right: 16px;
+  top: 12px;
+  background: none;
+  border: 0;
+  color: var(--rose);
+  font-size: 1.5rem;
+  line-height: 1;
+  transition: color 0.2s;
+  padding: 4px 8px;
+}
+.close:hover { color: #fff; }
+.close:focus-visible { outline: 2px solid var(--rose); outline-offset: 2px; }
+
+/* PETALS */
+.petal {
+  position: fixed;
+  top: -30px;
+  z-index: 5;
+  pointer-events: none;
+  color: #c94a68;
+  animation: fall linear forwards;
+  opacity: 0.7;
+  user-select: none;
+}
+.floating {
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  z-index: 25;
+  background: #4b1024;
+  border: 1px solid #9c405b;
+  color: #f4dce2;
+  padding: 12px 16px;
+  border-radius: 50px;
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  box-shadow: 0 8px 24px #0006;
+  transition: background 0.2s, transform 0.2s;
+  font-weight: 500;
+}
+.floating:hover { background: #6d1e36; transform: translateY(-2px); }
+.floating:focus-visible { outline: 2px solid var(--rose); outline-offset: 3px; }
+
+@keyframes spin { to { transform: rotate(360deg); } }
+@keyframes pulse {
+  50% { transform: scale(1.15); text-shadow: 0 0 20px #e7a0ae; }
+}
+@keyframes fall {
+  to { transform: translateY(110vh) rotate(540deg); opacity: 0; }
+}
+
+/* RESPONSIVE */
+@media (max-width: 760px) {
+  .grid { grid-template-columns: 1fr 1fr; }
+  .bouquet { grid-template-columns: 1fr 1fr; }
+  .section { padding-top: 75px; }
+  .feature-panel { padding: 24px 16px; }
+  .letter { padding: 26px; font-size: 1.1rem; }
+  .letter .script { font-size: 2.2rem; }
+  .modal-card { padding: 25px; }
+  .modal-card h3 { font-size: 2rem; }
+}
+@media (max-width: 480px) {
+  .grid { grid-template-columns: 1fr; }
+  .bouquet { grid-template-columns: 1fr 1fr; }
+  .hero-orbit { width: 95vw; }
+  .gate-card { padding: 36px 20px; }
+  .surprise { padding: 24px 16px; }
+  .floating { right: 12px; bottom: 12px; padding: 10px 14px; font-size: 0.65rem; }
+  h1 { font-size: clamp(3.8rem, 18vw, 7rem); }
+  #reassurance .feature-panel { padding: 24px 14px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ========== GATE ========== -->
+<div id="gate">
+  <div class="gate-card">
+    <div class="gate-flower">❀</div>
+    <div class="eyebrow">a little world, kept for you</div>
+    <div class="gate-title script">Mi Niña Bonita</div>
+    <div class="gate-sub">the doors open only for Diana</div>
+    <div class="gate-hint">✦ hint: three words — the sweetest truth ✦</div>
+    <input id="password" class="gate-input" type="password" placeholder="whisper the secret words" autocomplete="off" aria-label="Password">
+    <button class="primary" id="unlock" type="button">Enter the museum</button>
+    <div class="error" id="error" role="alert"></div>
+    <div class="muted" style="font-size:0.65rem; margin-top:18px;">A private little place made with love</div>
+  </div>
+</div>
+
+<!-- ========== HEADER ========== -->
+<header id="top">
+  <div class="hero-orbit"></div>
+  <div class="hero-content">
+    <div class="hero-kicker">an archive of one extraordinary soul</div>
+    <h1 class="script">Mi Niña<br>Bonita</h1>
+    <p class="hero-sub">Not a monument to perfection, but a museum for the person you are — every detail, every chapter, every little thing that makes you <em>you</em>.</p>
+    <div class="hero-mark">✦ ❧ ✦</div>
+  </div>
+  <div class="scroll">↓ enter her world ↓</div>
+</header>
+
+<!-- ========== NAV ========== -->
+<nav aria-label="Main navigation">
+  <a href="#museum">The Museum</a>
+  <a href="#reassurance">1,000 Reassurances</a>
+  <a href="#timer">Our Time</a>
+  <a href="#bouquet">Bouquet</a>
+  <a href="#surprises">Secrets</a>
+  <a href="#letter">A Letter</a>
+</nav>
+
+<main>
+
+  <!-- ========== MUSEUM ========== -->
+  <section class="section" id="museum">
+    <div class="section-head">
+      <div class="eyebrow">the main exhibition</div>
+      <h2 class="serif">The Diana Museum</h2>
+      <p>A collection of the things that make you, you.</p>
+      <div class="ornament">— ✧ —</div>
+    </div>
+    <div class="intro">“A person is an entire universe. This is my attempt to give yours a place where every little constellation has room to shine.”</div>
+
+    <div class="grid" style="margin-top:30px">
+      <article class="exhibit">
+        <div class="num">EXHIBIT 001 · THE ESSENCE</div>
+        <h3>The Person Behind the Name</h3>
+        <p>Your character, your values, the way you think, the things you stand for, and all the parts of you that words can only try to describe.</p>
+        <button data-modal="essence" type="button">Open exhibit ↗</button>
+      </article>
+      <article class="exhibit">
+        <div class="num">EXHIBIT 002 · LANGUAGE</div>
+        <h3>The Diana Dictionary</h3>
+        <p>Your expressions, favorite phrases, nicknames, inside jokes, and the little words that could only ever sound like you.</p>
+        <button data-modal="dictionary" type="button">Open exhibit ↗</button>
+      </article>
+      <article class="exhibit">
+        <div class="num">EXHIBIT 003 · PREFERENCES</div>
+        <h3>Her Little World</h3>
+        <p>The colors, flowers, music, comforts, hobbies, foods, and small favorites that make your world feel like yours.</p>
+        <button data-modal="world" type="button">Open exhibit ↗</button>
+      </article>
+      <article class="exhibit">
+        <div class="num">EXHIBIT 004 · DETAILS</div>
+        <h3>The Little Things</h3>
+        <p>Your habits, quirks, mannerisms, reactions, and tiny details that might seem ordinary to you but deserve to be remembered.</p>
+        <button data-modal="details" type="button">Open exhibit ↗</button>
+      </article>
+      <article class="exhibit">
+        <div class="num">EXHIBIT 005 · INNER WORLD</div>
+        <h3>The Mind of Diana</h3>
+        <p>Your thoughts, opinions, dreams, imagination, ambitions, and the unique way you look at the world.</p>
+        <button data-modal="mind" type="button">Open exhibit ↗</button>
+      </article>
+      <article class="exhibit">
+        <div class="num">EXHIBIT 006 · CHRONOLOGY</div>
+        <h3>The Chapters So Far</h3>
+        <p>A timeline of milestones, memories, achievements, turning points, and moments that helped shape your story.</p>
+        <button data-modal="chapters" type="button">Open exhibit ↗</button>
+      </article>
+      <article class="exhibit">
+        <div class="num">EXHIBIT 007 · CONNECTIONS</div>
+        <h3>The People She Loves</h3>
+        <p>The friendships, family bonds, and meaningful connections that hold a place in your life.</p>
+        <button data-modal="people" type="button">Open exhibit ↗</button>
+      </article>
+      <article class="exhibit">
+        <div class="num">EXHIBIT 008 · ACCOMPLISHMENTS</div>
+        <h3>Things to Be Proud Of</h3>
+        <p>Your victories, big and small. The hard things you got through and the things you made happen.</p>
+        <button data-modal="proud" type="button">Open exhibit ↗</button>
+      </article>
+      <article class="exhibit">
+        <div class="num">EXHIBIT 009 · THE NEXT ERA</div>
+        <h3>The Unwritten Chapters</h3>
+        <p>The places you want to see, the things you want to try, the dreams still waiting for their moment.</p>
+        <button data-modal="future" type="button">Open exhibit ↗</button>
+      </article>
+    </div>
+    <p class="muted" style="text-align:center; font-size:0.75rem; margin-top:22px">The exhibits are intentionally open-ended. Add real details and memories so this archive tells her story, not somebody else's assumptions.</p>
+  </section>
+
+  <!-- ========== 1,000 REASSURANCES ========== -->
+  <section class="section" id="reassurance">
+    <div class="section-head">
+      <div class="eyebrow">for every day you need a reminder</div>
+      <h2 class="serif">1,000 Reasons to Feel Safe</h2>
+      <p>A thousand little reminders that you are loved, valued, heard, and never required to be perfect.</p>
+    </div>
+    <div class="feature-panel" style="text-align:center">
+      <div class="eyebrow">a note for my niña bonita</div>
+      <div id="reassuranceCount" class="gold">MESSAGE 001 / 1000</div>
+      <div id="reassuranceText" class="serif">You do not have to earn tenderness. You deserve patience and kindness simply because you are you.</div>
+      <div class="reassurance-buttons">
+        <button class="primary" id="previousReassurance" type="button">Previous</button>
+        <button class="primary" id="randomReassurance" type="button">Surprise me</button>
+        <button class="primary" id="nextReassurance" type="button">Next reminder</button>
+      </div>
+      <div class="timer-note" style="margin-top:20px">You can return to any message. Take the one you need and leave the rest for another day.</div>
+    </div>
+  </section>
+
+  <!-- ========== TIMER ========== -->
+  <section class="section" id="timer">
+    <div class="section-head">
+      <div class="eyebrow">two lives, one timeline</div>
+      <h2 class="serif">Our Time</h2>
+      <p>Every second is another second closer to all the days still waiting for us.</p>
+    </div>
+    <div class="feature-panel">
+      <div class="eyebrow" style="text-align:center">since october 2, 2026</div>
+      <div class="timer" id="relationshipTimer">
+        <div class="time-unit"><strong id="days">—</strong><span>Days</span></div>
+        <div class="time-unit"><strong id="hours">—</strong><span>Hours</span></div>
+        <div class="time-unit"><strong id="minutes">—</strong><span>Minutes</span></div>
+        <div class="time-unit"><strong id="seconds">—</strong><span>Seconds</span></div>
+      </div>
+      <div class="timer-note">A little count of the time we've shared so far.</div>
+      <div style="height:1px; background:var(--line); margin:30px 0"></div>
+      <div class="eyebrow" style="text-align:center">one day, a promise made in person</div>
+      <h3 class="serif" style="text-align:center; font-size:2rem; margin:12px 0">The Wedding Countdown</h3>
+      <div class="timer">
+        <div class="time-unit"><strong id="weddingDays">∞</strong><span>Days to go</span></div>
+      </div>
+      <div class="timer-note" id="weddingNote">Our date is still unwritten. The dream is here; the date can be added when it's ours to announce.</div>
+    </div>
+  </section>
+
+  <!-- ========== BOUQUET ========== -->
+  <section class="section" id="bouquet">
+    <div class="section-head">
+      <div class="eyebrow">pick a flower, keep a promise</div>
+      <h2 class="serif">A Bouquet for You</h2>
+      <p>Collect a little garden, one bloom at a time.</p>
+    </div>
+    <div class="bouquet" id="flowerShop">
+      <button class="flower" data-flower="Lily" type="button"><span class="bloom">⚘</span><b>White Lily</b><small>Grace & devotion</small></button>
+      <button class="flower" data-flower="Hibiscus" type="button"><span class="bloom">🌺</span><b>Hibiscus</b><small>Bright and unforgettable</small></button>
+      <button class="flower" data-flower="Rose" type="button"><span class="bloom">🥀</span><b>Velvet Rose</b><small>A love kept close</small></button>
+      <button class="flower" data-flower="Camellia" type="button"><span class="bloom">✿</span><b>Camellia</b><small>Quiet admiration</small></button>
+      <button class="flower" data-flower="Jasmine" type="button"><span class="bloom">❀</span><b>Jasmine</b><small>Softness in the dark</small></button>
+      <button class="flower" data-flower="Peony" type="button"><span class="bloom">✾</span><b>Peony</b><small>A wish for happiness</small></button>
+    </div>
+    <div class="collection-count" id="collectionCount">Your bouquet: 0 / 6 flowers collected</div>
+    <div class="feature-panel" style="text-align:center">
+      <div class="script" style="font-size:2.8rem; color:var(--rose)">For my niña bonita</div>
+      <p class="muted">Every flower you collect stays in your bouquet on this device.</p>
+      <button class="primary" id="resetBouquet" type="button">Gather the flowers again</button>
+    </div>
+  </section>
+
+  <!-- ========== SURPRISES ========== -->
+  <section class="section" id="surprises">
+    <div class="section-head">
+      <div class="eyebrow">little secrets tucked away</div>
+      <h2 class="serif">Hidden Surprises</h2>
+      <p>Some things are better discovered than announced.</p>
+    </div>
+    <div class="surprise">
+      <div class="eyebrow">choose a sealed note</div>
+      <div style="margin:20px 0">
+        <button class="primary secret" data-secret="0" type="button">✉ The first</button>
+        <button class="primary secret" data-secret="1" type="button">✉ The second</button>
+        <button class="primary secret" data-secret="2" type="button">✉ The third</button>
+      </div>
+      <div class="surprise-message" id="surpriseMessage">Three little envelopes. Open whichever one calls to you.</div>
+    </div>
+  </section>
+
+  <!-- ========== LETTER ========== -->
+  <section class="section" id="letter">
+    <div class="section-head">
+      <div class="eyebrow">from my heart, without an exhibit number</div>
+      <h2 class="serif">A Letter for Diana</h2>
+    </div>
+    <div class="letter">
+      <div class="script">Mi niña bonita,</div>
+      <p>I made this little place because I never want the world to reduce you to one thing. You are not a photograph, a first impression, or a list of pretty words. You are a whole person with a mind of your own, a history that belongs to you, a thousand little habits, hopes, opinions, and dreams.</p>
+      <p>I want to keep learning you. I want to know the stories behind your favorite things, the reasons you love certain songs, what makes you laugh when nobody else understands the joke, what you dream about when the world gets quiet, and all the little details you might think nobody notices.</p>
+      <p>This museum will never be finished, because there will always be another side of you for me to discover. And I hope you keep discovering yourself, too. I am proud of the person you are and excited for the person you are still becoming.</p>
+      <p>May this little corner remind you that your story matters, your voice matters, and you deserve to be known in all your beautiful complexity.</p>
+      <div class="script" style="text-align:right; margin-top:20px">Always yours ♡</div>
+    </div>
+  </section>
+
+  <!-- ========== SONG ========== -->
+  <section class="section">
+    <div class="section-head">
+      <div class="eyebrow">press play, stay awhile</div>
+      <h2 class="serif">A Song for You</h2>
+      <p>A little soundtrack for this little universe.</p>
+    </div>
+    <div class="spotify">
+      <iframe src="https://open.spotify.com/embed/track/3W7KHojYGgYaoX9ogKO9hU?utm_source=generator&theme=0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" title="Spotify song for Diana"></iframe>
+    </div>
+  </section>
+
+</main>
+
+<!-- ========== FOOTER ========== -->
+<footer class="footer">
+  An unfinished archive for an irreplaceable person.
+  <span class="script">Diana, mi niña bonita.</span>
+  <span style="font-size:0.62rem; letter-spacing:0.2em; text-transform:uppercase">made with love · forever in progress</span>
+</footer>
+
+<button class="floating" id="petals" type="button">✿ Release petals</button>
+
+<!-- ========== MODAL ========== -->
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <div class="modal-card">
+    <button class="close" id="closeModal" type="button" aria-label="Close">×</button>
+    <div class="eyebrow" id="modalNum">EXHIBIT</div>
+    <h3 id="modalTitle">The Diana Collection</h3>
+    <p id="modalText"></p>
+    <p class="muted" style="font-size:0.75rem; margin-top:16px">This display is waiting for Diana's own stories and details to be added.</p>
+  </div>
+</div>
+
+<script>
+// ============================================================
+// CONFIG — password is now "i love you"
+// ============================================================
+const CONFIG = {
+  password: 'i love you',
+  relationshipStart: '2026-10-02T00:00:00',
+  weddingDate: ''
+};
+
+// ============================================================
+// EXHIBIT CONTENT
+// ============================================================
+const exhibits = {
+  essence: ['EXHIBIT 001', 'The Person Behind the Name', 'A living portrait of Diana’s character. Add the values she holds close, what she believes in, what she finds funny, what she cares about, and what makes her feel most like herself.'],
+  dictionary: ['EXHIBIT 002', 'The Diana Dictionary', 'A growing glossary of her favorite phrases, nicknames, expressions, inside jokes, and words that have a special meaning between the people who know her.'],
+  world: ['EXHIBIT 003', 'Her Little World', 'Known favorites: emerald green, hibiscus, and lilies. Add her favorite songs, foods, films, games, places, hobbies, comfort items, and the little things that make an ordinary day better.'],
+  details: ['EXHIBIT 004', 'The Little Things', 'The details that make her unmistakably herself: how she reacts when she is excited, the things she does without noticing, her routines, quirks, and tiny habits.'],
+  mind: ['EXHIBIT 005', 'The Mind of Diana', 'A place for her opinions, imagination, ambitions, curiosities, worries, hopes, and the way she makes sense of the world. Let her own words lead this exhibit.'],
+  chapters: ['EXHIBIT 006', 'The Chapters So Far', 'Build a timeline from memories she wants to share: childhood stories, turning points, proud moments, favorite days, lessons, and new beginnings.'],
+  people: ['EXHIBIT 007', 'The People She Loves', 'A respectful celebration of the people who matter to Diana: friends, family, mentors, and the connections that have shaped her life. Add only names and memories she is comfortable sharing.'],
+  proud: ['EXHIBIT 008', 'Things to Be Proud Of', 'Every achievement deserves a place: big milestones, quiet victories, difficult things she made it through, skills she developed, and promises she kept to herself.'],
+  future: ['EXHIBIT 009', 'The Unwritten Chapters', 'A collection of future plans and possibilities: places to visit, skills to learn, experiences to try, dreams to chase, and the person she hopes to become.']
+};
+
+// ============================================================
+// GATE / PASSWORD
+// ============================================================
+const gate = document.getElementById('gate');
+const passwordInput = document.getElementById('password');
+const errorDiv = document.getElementById('error');
+
+function unlock() {
+  const v = passwordInput.value.trim().toLowerCase();
+  if (v === CONFIG.password) {
+    gate.classList.add('hidden');
+    document.body.style.overflow = '';
+    setTimeout(() => gate.remove(), 900);
+  } else {
+    errorDiv.textContent = 'Not quite, mi niña. Try again with the hint.';
+    passwordInput.focus();
+    passwordInput.select();
+  }
+}
+
+document.getElementById('unlock').addEventListener('click', unlock);
+passwordInput.addEventListener('keydown', e => {
+  if (e.key === 'Enter') unlock();
+});
+
+// ============================================================
+// MODAL
+// ============================================================
+const modal = document.getElementById('modal');
+const modalNum = document.getElementById('modalNum');
+const modalTitle = document.getElementById('modalTitle');
+const modalText = document.getElementById('modalText');
+const closeModal = document.getElementById('closeModal');
+
+document.querySelectorAll('[data-modal]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const data = exhibits[btn.dataset.modal];
+    if (!data) return;
+    modalNum.textContent = data[0];
+    modalTitle.textContent = data[1];
+    modalText.textContent = data[2];
+    modal.classList.add('show');
+  });
+});
+
+closeModal.addEventListener('click', () => modal.classList.remove('show'));
+modal.addEventListener('click', e => {
+  if (e.target === modal) modal.classList.remove('show');
+});
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape' && modal.classList.contains('show')) {
+    modal.classList.remove('show');
+  }
+});
+
+// ============================================================
+// TIMER
+// ============================================================
+function tick() {
+  const start = new Date(CONFIG.relationshipStart);
+  const now = new Date();
+  const ms = Math.max(0, now - start);
+  const d = Math.floor(ms / 86400000);
+  const h = Math.floor(ms % 86400000 / 3600000);
+  const m = Math.floor(ms % 3600000 / 60000);
+  const s = Math.floor(ms % 60000 / 1000);
+
+  document.getElementById('days').textContent = String(d).padStart(2, '0');
+  document.getElementById('hours').textContent = String(h).padStart(2, '0');
+  document.getElementById('minutes').textContent = String(m).padStart(2, '0');
+  document.getElementById('seconds').textContent = String(s).padStart(2, '0');
+
+  if (CONFIG.weddingDate) {
+    const left = new Date(CONFIG.weddingDate) - now;
+    document.getElementById('weddingDays').textContent = left > 0 ? Math.ceil(left / 86400000) : '♡';
+    document.getElementById('weddingNote').textContent = left > 0
+      ? 'Counting down to a day worth remembering.'
+      : 'Today is the day. ♡';
+  }
+}
+tick();
+setInterval(tick, 1000);
+
+// ============================================================
+// BOUQUET
+// ============================================================
+const FLOWER_DEFAULTS = {
+  Lily: 'Grace & devotion',
+  Hibiscus: 'Bright and unforgettable',
+  Rose: 'A love kept close',
+  Camellia: 'Quiet admiration',
+  Jasmine: 'Softness in the dark',
+  Peony: 'A wish for happiness'
+};
+
+let collected = JSON.parse(localStorage.getItem('dianaBouquet') || '[]');
+
+function renderBouquet() {
+  document.querySelectorAll('.flower').forEach(btn => {
+    const name = btn.dataset.flower;
+    const isCollected = collected.includes(name);
+    btn.classList.toggle('collected', isCollected);
+    btn.setAttribute('aria-pressed', isCollected);
+    const small = btn.querySelector('small');
+    small.textContent = isCollected
+      ? 'Added to your bouquet ✓'
+      : (FLOWER_DEFAULTS[name] || 'Collect this flower');
+  });
+  document.getElementById('collectionCount').textContent =
+    `Your bouquet: ${collected.length} / 6 flowers collected`;
+}
+
+document.querySelectorAll('.flower').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const name = btn.dataset.flower;
+    collected = collected.includes(name)
+      ? collected.filter(x => x !== name)
+      : [...collected, name];
+    localStorage.setItem('dianaBouquet', JSON.stringify(collected));
+    renderBouquet();
+  });
+});
+
+document.getElementById('resetBouquet').addEventListener('click', () => {
+  collected = [];
+  localStorage.setItem('dianaBouquet', '[]');
+  renderBouquet();
+});
+
+renderBouquet();
+
+// ============================================================
+// 1,000 REASSURANCES
+// ============================================================
+const reassuranceOpeners = [
+  'Diana, on the days when your thoughts are unkind, remember this:',
+  'Mi niña bonita, please keep this close:',
+  'If today feels heavier than it should, let this be your reminder:',
+  'When you start questioning your place in this world, remember:',
+  'For the quiet moments when you need reassurance:',
+  'If you feel difficult to understand, I hope you remember:',
+  'On a day when you cannot see your own worth, read this slowly:',
+  'When everything feels uncertain, hold on to this truth:',
+  'For the version of you who is tired of being strong:',
+  'Whenever you need a softer thought to come back to:'
+];
+
+const reassuranceCores = [
+  'you are allowed to have feelings without apologizing for every one of them',
+  'you do not need to be cheerful, easy, or endlessly strong to deserve care',
+  'your boundaries matter, your voice matters, and your comfort matters',
+  'being imperfect does not make you less deserving of patience or affection',
+  'you are not a burden for needing rest, reassurance, or a little extra understanding',
+  'your past does not cancel the good you are still growing toward',
+  'you can change, learn, stumble, and begin again without losing your worth',
+  'you deserve relationships where honesty and kindness can exist together',
+  'your dreams are worth taking seriously, even before you know how to reach them',
+  'you are a whole person, never a problem that needs to be solved'
+];
+
+const reassuranceClosers = [
+  'You never have to perform happiness to be worthy of gentleness.',
+  'There is room for every honest part of you here.',
+  'Take your time; you are not behind in becoming yourself.',
+  'You deserve to be listened to, not merely tolerated.',
+  'One difficult day cannot define your entire story.',
+  'You can ask for what you need without feeling guilty for having needs.',
+  'I hope you speak to yourself with some of the kindness you give away.',
+  'You are allowed to be a work in progress and still be loved well.',
+  'Nothing about having a hard moment makes you unlovable.',
+  'Please remember that you matter on ordinary days, too.'
+];
+
+const reassuranceMessages = [];
+for (const a of reassuranceOpeners) {
+  for (const b of reassuranceCores) {
+    for (const c of reassuranceClosers) {
+      reassuranceMessages.push(`${a} ${b}. ${c}`);
+    }
+  }
+}
+
+const TOTAL_REASSURANCES = reassuranceMessages.length; // 1000
+let reassuranceIndex = 0;
+
+const reassuranceText = document.getElementById('reassuranceText');
+const reassuranceCount = document.getElementById('reassuranceCount');
+
+function showReassurance(i) {
+  reassuranceIndex = ((i % TOTAL_REASSURANCES) + TOTAL_REASSURANCES) % TOTAL_REASSURANCES;
+  reassuranceCount.textContent = `MESSAGE ${String(reassuranceIndex + 1).padStart(3, '0')} / ${TOTAL_REASSURANCES}`;
+  reassuranceText.style.opacity = '0';
+  setTimeout(() => {
+    reassuranceText.textContent = reassuranceMessages[reassuranceIndex];
+    reassuranceText.style.opacity = '1';
+  }, 120);
+}
+
+document.getElementById('previousReassurance').addEventListener('click', () => showReassurance(reassuranceIndex - 1));
+document.getElementById('nextReassurance').addEventListener('click', () => showReassurance(reassuranceIndex + 1));
+document.getElementById('randomReassurance').addEventListener('click', () => showReassurance(Math.floor(Math.random() * TOTAL_REASSURANCES)));
+
+showReassurance(0);
+
+// ============================================================
+// SECRET NOTES
+// ============================================================
+const notes = [
+  'I hope you never feel like you have to become somebody else to be worthy of being understood. Your own voice, your own pace, and your own way of being deserve room.',
+  'There are still so many stories you have not told, places you have not seen, and versions of yourself you have not met yet. I hope you get to experience all the good waiting ahead.',
+  'You do not have to earn rest, kindness, or a place in the world. Even on the days when you feel unfinished, you are still a whole person.'
+];
+
+document.querySelectorAll('.secret').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const idx = Number(btn.dataset.secret);
+    document.getElementById('surpriseMessage').textContent = notes[idx];
+    btn.textContent = '✉ Opened';
+    btn.disabled = true;
+    btn.style.opacity = '0.65';
+  });
+});
+
+// ============================================================
+// PETALS
+// ============================================================
+function petals(n = 18) {
+  for (let i = 0; i < n; i++) {
+    const p = document.createElement('span');
+    p.className = 'petal';
+    p.textContent = ['✿', '❀', '❧', '♥'][Math.floor(Math.random() * 4)];
+    p.style.left = Math.random() * 100 + 'vw';
+    p.style.animationDuration = (5 + Math.random() * 7) + 's';
+    p.style.fontSize = (12 + Math.random() * 18) + 'px';
+    document.body.appendChild(p);
+    setTimeout(() => p.remove(), 13000);
+  }
+}
+
+document.getElementById('petals').addEventListener('click', () => petals(28));
+setInterval(() => petals(2), 4500);
+
+// ============================================================
+// GATE SCROLL LOCK
+// ============================================================
+document.body.style.overflow = 'hidden';
+const gateObserver = new MutationObserver(() => {
+  if (gate.classList.contains('hidden') || !document.body.contains(gate)) {
+    document.body.style.overflow = '';
+    gateObserver.disconnect();
+  }
+});
+gateObserver.observe(gate, { attributes: true, attributeFilter: ['class'] });
+</script>
+</body>
+</html>
+```
+
+Museum Features & Interactions
+
+The page is built around a few key interactive areas that bring the "museum" concept to life.
+
+· Password Gate: The entrance uses a simple password check. The correct phrase is "i love you," and a hint is provided on the screen for anyone who needs it.
+· Exhibit Grid: Nine exhibit cards each open a modal with a title and description, acting as placeholders for personal stories and memories.
+· Reassurance Section: This panel cycles through 1,000 unique reassuring messages. You can move forward, backward, or ask for a random one.
+· Bouquet & Secrets: You can collect six flowers, which are saved in your browser. The "Hidden Surprises" section reveals three sealed notes with special messages.
+· Timers & Song: Two count-up/down timers track time since a start date and time until a wedding day. A Spotify player is embedded to play a chosen song.
+· Visual Effects: Clicking "Release petals" or waiting a few seconds triggers a gentle falling-petal animation across the screen.
